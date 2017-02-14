@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: |
-    Base iRODS REST API - including access to primary iRODS user functions like accessing data and metadata,
+    Base iRODS REST API for DFC Stack - including access to primary iRODS user functions like accessing data and metadata,
     setting acls, running queries
   version: 1.0.0
   title: iRODS REST Services Base
@@ -28,6 +28,13 @@ paths:
       produces:
         - application/json
         - application/xml
+      parameters:
+        - name: midTierOnly
+          in: query
+          description: causes ping to only reach the REST mid tier and not query the back-end, provides a simple heartbeat of the mid-tier.  By default a ping will talk to the back end iRODS server
+          required: false
+          default: false
+          type: boolean
       responses:
           200:
             description: 'Successful ping, containing info on how long it too the REST backend to connect to iRODS'
